@@ -710,12 +710,12 @@ class PDF::Writer
 
     xref = []
 
-    content = "%PDF-#{@version}\n%\303\242\303\243\303\217\303\223\n"
+    content = "%PDF-#{@version}\n%\303\242\303\243\303\217\303\223\n".force_encoding('binary')
     pos = content.size
 
     objects.each do |oo|
       cont = oo.to_s
-      content << cont
+      content << cont.force_encoding('binary')
       xref << pos
       pos += cont.size
     end
